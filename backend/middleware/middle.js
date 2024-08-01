@@ -6,6 +6,7 @@ const dashboardAuth = (req,res,next) => {
     const verify = jwt.verify(token,JWT_SECRET);
     if (!verify) {
         res.status(401).json({message: 'Could not load message'});
+        return;
     }
     req.user = verify;
     next(); 

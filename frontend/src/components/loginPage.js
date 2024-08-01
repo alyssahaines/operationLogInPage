@@ -11,7 +11,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     const loginInfo = {username, password};
     try {
-   const response = await axios.post('http//localhost:5003/api/login',loginInfo);
+   const response = await axios.post('api/login',loginInfo);
    if (response.status) {
     const token = response.data;
     localStorage.setItem('token',token);

@@ -1,21 +1,24 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+
 
 const Register = () => {
      const [username, setUsername] = useState('');
      const [password, setPassword] = useState('');
-
+    const history = useNavigate();
     
      const handleSubmit = async (e) => {
         e.preventDefault();
         const registerInfo = {username,password};
         try {
-            const response = await axios.post('http//localhost:5003/api/register', registerInfo);
-            if (response.status) {
-                console.log('Registration Sucessful! Please follow link to login');
+            const response = await axios.post('api/register', registerInfo);
+            if (response.status < 300) {
+                
                 setUsername('');
                 setPassword('');
+                history.push('/login');
             }
         }
         catch (error) {
@@ -44,7 +47,7 @@ const Register = () => {
             placeholder = "password"
             required
             />
-            <button type = "submit" />
+            <button type = "submit"> Sign up</button>
             </form>
 
         <h2> Have an Account?

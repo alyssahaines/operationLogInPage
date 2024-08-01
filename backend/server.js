@@ -8,11 +8,9 @@ app.use(express.json());
 app.use(cors());
 
 
-/* app will use routes defined in credentials*/ 
-const routes = require('./routes/credentials');
-app.use('/api',routes);
+
 /* connecting to db*/
-mongoose.connect('mongodb://localhost/classroom');
+mongoose.connect('mongodb://localhost:27017/classroom');
 const db = mongoose.connection;
 db.on('error', (error) => console.log('Error connecting to db',error));
 db.once('open',() => console.log('Successfully connected to db!'));
@@ -22,10 +20,12 @@ app.get('/', (req,res) => {
 res.send('server running...');
 });
 
-
+/* app will use routes defined in credentials*/ 
+const routes = require('./routes/credentials');
+app.use('/api',routes);
 /* listening for requestings on server*/
-app.listen(5003, () => {
-    console.log('server running on port 5000');
+app.listen(5004, () => {
+    console.log('server running on port 5004');
 }
 
 );
