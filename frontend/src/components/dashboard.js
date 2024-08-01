@@ -12,8 +12,8 @@ useEffect(() => {
         if (!token) {
             throw new Error('No token found');
         }
-const response = await axios.get('api/dashboard',{
-    headers: {Authorization: 'Bearer ${token}'}
+const response = await axios.get('http//localhost:5003api/dashboard',{
+    headers: {Authorization: `Bearer ${token}`}
     ,
 });
         if (response.ok) {

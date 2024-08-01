@@ -11,8 +11,8 @@ const Register = () => {
         e.preventDefault();
         const registerInfo = {username,password};
         try {
-            const response = await axios.post('/api/register', registerInfo);
-            if (response.ok) {
+            const response = await axios.post('http//localhost:5003/api/register', registerInfo);
+            if (response.status) {
                 console.log('Registration Sucessful! Please follow link to login');
                 setUsername('');
                 setPassword('');
