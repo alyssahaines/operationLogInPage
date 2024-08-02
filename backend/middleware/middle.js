@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const dashboardAuth = (req,res,next) => {
-    const access = req.headers['authorization'];
+    const access = req.headers['Authorization'];
     
     if (!access) {
         res.status(401).json({message: 'Could not load message'});

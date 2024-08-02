@@ -35,25 +35,22 @@ catch (error) {
 });
  
 route.post('/register', async (req,res) => {  
-    /*
+    
 const {username,password} = req.body;
 
-if username is found in db, return without re- registering 
+/*if username is found in db, return without re- registering */
 const inDB = await Fields.findOne({username});
 if (inDB) {
     res.status(401).json({message: 'Account already exists'});
     return;
 }
-try to save data in Fields schema, else server error  
+/*try to save data in Fields schema, else server error   */
 try {
     const newUser = new Fields({username,password});
     await newUser.save();
     res.status(201).json({message: 'Succesfully created account!'});
     return;
-}  */
-try {
-    res.send(req.headers['Authorization']);
-}
+} 
 catch (error) {
     res.status(500).json({message: error.message});
     return;
