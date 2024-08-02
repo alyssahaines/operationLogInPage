@@ -14,18 +14,26 @@ password: {type: String,
 
 /* when a route calls .save(), this will run prior to properly hash
 the password for protection. */
-cred.pre('save', async (next) => {
-    if (!this.password.isModified()) {
+cred.pre('save', async function(next) {
+    if (!this.isModified('password')) {
         return next();
     }
-    const salt = bcrypt.genSalt();
+    try {
+    const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password,salt);
+    
     next();
+    }   
+    catch (error) {
+    next(error);
+    }
 });
 
-cred.methods.compare = (givenPassword) => {
-return bcrypt.compare(this.password,givenPassword);
+cred.methods.comparePassword = function (givenPassword) {
+return bcrypt.compare(givenPassword,this.password);
 };
 
 /* access the schema using the model name Fields*/
-module.exports = mongoose.model('Fields',cred);
+
+ const Fields = mongoose.model('Fields',cred);
+ module.exports = Fields;

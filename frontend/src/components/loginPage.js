@@ -11,13 +11,13 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     const loginInfo = {username, password};
     try {
-   const response = await axios.post('api/login',loginInfo);
+   const response = await axios.post('http://localhost:5004/api/login',loginInfo);
    if (response.status) {
     const token = response.data;
     localStorage.setItem('token',token);
     setUsername('');
     setPassword('');
-    history.push('/dashboard');
+    history('/dashboard');
    }
     }
     catch (error) {
@@ -32,7 +32,7 @@ return(
 <h1> Login Page </h1>
 <form onSubmit = {handleSubmit}> 
 <input
-type = "username"
+type = "text"
 value = {username}
 onChange = {(e) => setUsername(e.target.value) }
 placeholder = "Username"

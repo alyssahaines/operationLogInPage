@@ -12,11 +12,11 @@ useEffect(() => {
         if (!token) {
             throw new Error('No token found');
         }
-const response = await axios.get('api/dashboard',{
-    headers: {Authorization: `Bearer ${token}`}
+const response = await axios.get('http://localhost:5004/api/dashboard',{
+    headers: {'authorization':`Bearer ${token}`}
     ,
 });
-        if (response.ok) {
+        if (response.status) {
             setUser(response.data);
         }
     }

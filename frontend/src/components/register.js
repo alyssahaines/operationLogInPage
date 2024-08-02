@@ -13,12 +13,12 @@ const Register = () => {
         e.preventDefault();
         const registerInfo = {username,password};
         try {
-            const response = await axios.post('api/register', registerInfo);
+            const response = await axios.post('http://localhost:5004/api/register', registerInfo);
             if (response.status < 300) {
                 
                 setUsername('');
                 setPassword('');
-                history.push('/login');
+                history('/login');
             }
         }
         catch (error) {
@@ -34,7 +34,7 @@ const Register = () => {
             <h1> Register here </h1>
             <form onSubmit = {handleSubmit}>
             <input
-            type = "username"
+            type = "text"
             value = {username}
             placeholder = "username"
             onChange = {(e) => setUsername(e.target.value)}
