@@ -13,10 +13,11 @@ useEffect(() => {
             throw new Error('No token found');
         }
 const response = await axios.get('http://localhost:5004/api/dashboard',{
-    headers: {'authorization':`Bearer ${token}`}
+    headers: {'Authorization':`Bearer ${token}`}
     ,
 });
         if (response.status) {
+            console.log(response.data);
             setUser(response.data);
         }
     }
@@ -37,7 +38,7 @@ if (error) {
 return(
     <div>
         
-    <h1> Welcome to your Dashboard! ${user.name}</h1>
+    <h1> Welcome to your Dashboard,{user?.userInfo?.userID}!</h1>
 
     </div>
 );

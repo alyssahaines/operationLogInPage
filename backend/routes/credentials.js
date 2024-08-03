@@ -59,8 +59,7 @@ catch (error) {
 /* calls middleware function that verifies token and then sends back data*/
 route.get('/dashboard', dashboardAuth, async (req,res) => {
     res.status(200).json({message: 'Succesfully loaded dashboard',
-                          userInfo: req.user,});
-                          return;
+                          userInfo: req.user});
                         }
     
 );
