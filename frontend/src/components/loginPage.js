@@ -1,6 +1,7 @@
 import {useNavigate,Link} from 'react-router-dom';
 import React, {useState} from 'react';
 import axios from 'axios';
+import './loginRegisterStyle.css';
 
 const Login = () => {
 const [username, setUsername] = useState('');
@@ -29,6 +30,7 @@ const handleSubmit = async (e) => {
 
 return(
 <div>
+    <div className = "logreg">
 <h1> Login Page </h1>
 <form onSubmit = {handleSubmit}> 
 <input
@@ -48,9 +50,10 @@ required
 
 <button type = "submit"> Login </button>
 </form>
-<h2>
+<h2 className = "links">
     Don't have an account? <Link to = "/register"> Register Here</Link>
 </h2>
+</div>
 
 
 </div>

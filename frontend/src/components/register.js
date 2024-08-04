@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import './loginRegisterStyle.css';
 
 
 const Register = () => {
@@ -14,7 +15,7 @@ const Register = () => {
         const registerInfo = {username,password};
         try {
             const response = await axios.post('http://localhost:5004/api/register', registerInfo);
-            if (response.status < 300) {
+            if (response.status) {
                 
                 setUsername('');
                 setPassword('');
@@ -31,7 +32,8 @@ const Register = () => {
 
     return (
         <div> 
-            <h1> Register here </h1>
+            <div className = "logreg">
+            <h1> Register Here </h1>
             <form onSubmit = {handleSubmit}>
             <input
             type = "text"
@@ -49,10 +51,12 @@ const Register = () => {
             />
             <button type = "submit"> Sign up</button>
             </form>
-
-        <h2> Have an Account?
-        <Link to = '/login'> Login here</Link>
+        
+        <h2 className = "links"> Have an Account?
+        <Link to = '/login'> Login Here</Link>
+        
         </h2>
+        </div>
         </div>
     );
 }
